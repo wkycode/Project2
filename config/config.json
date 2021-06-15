@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "your_project_name_here_development",
+    "database": "wky_project2_development",
     "host": "localhost",
     "dialect": "postgres"
   },

@@ -14,6 +14,7 @@ const port = process.env.PORT || 3000 // The port number our server runs on
 
 // Allow views to have access to moment library
 app.locals.moment = moment
+app.locals.showRandom = true
 
 // Setting the folder for our views and setting ejs as our views engine
 app.set('views', './views')
