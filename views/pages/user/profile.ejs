@@ -1,0 +1,83 @@
+<%- contentFor('meta') %>
+<%- contentFor('styles') %>
+<%- contentFor('scripts') %>
+<script>
+$(document).ready(function() {
+  $('#post-list').on('click', '.edit-post-btn', function(e) {
+    $('#postEditModal').modal('show')
+
+    const postID = $(e.target).data('id')
+    const caption = $(e.target).data('caption')
+    const content = $(e.target).data('content')
+
+    $('#postEdit-form').data('id', postID)
+    $('#postEdit-caption').val(caption)
+    $('#postEdit-content').val(content)
+  })
+})
+
+$(document).ready(function() {
+  $('#post-list').on('click','.delete-btn', function(e) {
+    const $parent = $(e.target).parents('.card')
+    const postID = $parent.data('id')
+    axios({
+      method: 'DELETE',
+      url: `/api/my/posts/${postID}`,
+      data: null
+    }).then(function(response) {
+      $parent.remove()
+    }).catch(function(err) {
+    })
+  })
+})
+</script>
+
+<%- contentFor('body') %>
+<div class="container mt-3">
+  <div class="header d-flex">
+    <div class="col-4 d-flex justify-content-end">
+      <img src="<%= foundUser.avatar %>" class="profile-avatar">
+    </div>
+    <div class="col-8 d-flex flex-column justify-content-around align-items-start ml-3">
+      <div>
+        <div class="foundUserName d-inline"><%= foundUser.username %> </div>
+        <% if (currentUser && currentUser.id === foundUser.id) { %> 
+          <button type="button" class="d-inline profile-edit-btn btn btn-light"data-toggle="modal" data-target="#userEditModal">Edit Profile</button>
+        <% } %> 
+      </div>
+      <div class="foundUserEmail"><%= foundUser.email %></div>
+    </div>
+  </div>
+</div>
+
+<div class="container container2">
+
+    <div class="line"></div>
+    <% if (posts.length > 0) { %>
+      <ul id="post-list" class="post-card list-unstyled d-flex justify-content-center">
+        <% posts.forEach(function(post){ %>
+          <div class="card m-5" style="width: 30rem;" data-id="<%= post.id %>">
+            <div class="card-header"><img class="post-avatar mr-2" src="<%=foundUser.avatar%>"><%=foundUser.username%></div>
+            <img class="card-img-top" src="<%= post.photo %>" alt="Card image cap">
+  
+            <div class="card-body">
+              <h5 class="card-title"><%= post.caption %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">By <%= foundUser.username %> @ <%= moment(post.createdAt).format('YYYY/MM/DD') %></h6>
+              <div class="card-text"><%= post.content %></div>
+            </div>
+  
+            <% if (currentUser && currentUser.id === post.UserId) { %> 
+              <div class="d-flex justify-content-end mr-2 mb-2">
+                <button type="button" class="edit-post-btn btn btn-light mr-1" data-id="<%= post.id %>" data-caption="<%= post.caption %>" data-content="<%= post.content %>">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button type="button" class="delete-btn del-post-btn btn btn-light"><i class="fas fa-trash"></i></button>
+              </div>
+          <% } %> 
+        </div>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <div>No Posts</div>
+  <% } %>
+</div>

@@ -1,0 +1,95 @@
+<div class="modal fade" id="createpostModal" tabindex="-1" role="dialog" aria-labelledby="createpostModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createpostModalLabel">New post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="createpost-form">
+          <!-- <div class="form-group">
+            <label for="photoUpload">Photo</label>
+            <input type="file" class="form-control-file" id="photoUpload" name="photo">
+          </div> -->
+          <!-- Caption -->
+          <div class="form-group">
+            <label for="createpost-caption" class="col-form-label">Caption</label>
+            <input type="text" class="form-control" id="createpost-caption" name="caption">
+          </div>
+          <!-- Content -->
+          <div class="form-group">
+            <label for="createpost-Content" class="col-form-label">Content</label>
+            <input type="text" class="form-control" id="createpost-Content" name="content">
+          </div>
+          <!-- Upload image input-->
+          <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+            <input id="createPostUpload" type="file" onchange="readURL(this);" class="form-control border-0" name="photo">
+            <label id="createPostUpload-label" for="createPostUpload" class="font-weight-light text-muted">Choose file</label>
+            <div class="input-group-append">
+              <label for="createPostUpload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+            </div>
+          </div>
+          <!-- Uploaded image area-->
+          <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p>
+          <div class="image-area mt-4"><img id="createResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+          <!-- Cancel Submit -->
+          <div class="mt-4 mb-2 border-bottom row"></div>
+          <div class="container text-right">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
+<script>
+$(document).ready(function() {
+  $createpostModal = $('#createpostModal')
+
+  $('#createpost-form').on('submit', function(e) {
+    e.preventDefault()
+
+    axios({
+      method: 'post',
+      url: '/api/my/posts',
+      data: new FormData(e.target)
+    }).then(function(response) {
+      window.location.href= "/"
+      $createpostModal.modal('hide')
+    }).catch(function(err) {
+      err.response.data
+    })
+  })
+})
+
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#createResult').attr('src', e.target.result);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$(function () {
+  $('#createPostUpload').on('change', function () {
+    readURL(input);
+  });
+});
+
+var input = document.getElementById( 'createPostUpload' );
+var infoArea = document.getElementById( 'createPostUpload-label' );
+
+input.addEventListener( 'change', showFileName );
+function showFileName( event ) {
+  var input = event.srcElement;
+  var fileName = input.files[0].name;
+  infoArea.textContent = 'File name: ' + fileName;
+}
+
+</script>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Project 2</title>
 
-  <link rel="stylesheet" href="./scss/styles.scss">
+  <link rel="stylesheet" href="/scss/styles.scss">
   <%- styles %>
 
   <script src="https://kit.fontawesome.com/34e4000c71.js" crossorigin="anonymous"></script>
@@ -19,7 +19,18 @@
   <%- include("_partials/navbar") %>
   <%- include("_partials/signup-modal") %>
   <%- include("_partials/login-modal") %>
-  <%- include("_partials/sidebar") %>
-  <%- body %>
+  <%- include("_partials/createpost-modal") %>
+  <% if (currentUser) { %> 
+    <%- include("_partials/useredit-modal") %>
+  <% } %> 
+  <% if (currentUser) { %> 
+    <%- include("_partials/postedit-modal") %>
+  <% } %> 
+  <div class="wrapper">
+    <%- include("_partials/sidebar") %>
+    <div class="flex-grow-1">
+      <%- body %>
+    </div>
+  </div>
 </body>
 </html>

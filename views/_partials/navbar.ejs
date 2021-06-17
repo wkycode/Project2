@@ -5,14 +5,19 @@
         <i class="fas fa-bars fa-align-justify"></i>
       </button>
     </div>
+    <% if (currentUser) { %>
+      <li class="nav-item list-unstyled">
+        <a id="logout-btn" class="nav-link">Logout</a>
+      </li>      
+    <% } else { %>
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
       </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#signupModal">Signup</a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#signupModal">Signup</a>
+      </li>
+    <% } %> 
     </ul>
   </div>
 </nav>
@@ -24,4 +29,18 @@
       $('.btn-main-menu').toggleClass('clicked');
     })
   })
+  
+  $(document).ready(function() {
+    $('#logout-btn').on('click', function(e) {
+      e.preventDefault()
+        axios({
+          method: 'delete',
+          url: '/api/auth/logout',
+      }).then(function(resp) {
+        window.location.reload()
+    })
+  })
+})
 </script>
+
+
