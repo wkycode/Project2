@@ -4,26 +4,44 @@
 <%- contentFor('styles') %>
 
 <%- contentFor('scripts') %>
+<script>
+$(document).ready(function() {
+  $('.like-btn').on('click', function(e) {
+    const $parent = $(e.target).parents('.card')
+    const postID = $parent.data('id')
+
+    axios({
+      method: 'POST',
+      url: `/api/posts/${postID}/like`
+    }).then(function(resp) {
+      $parent.find('.like-btn').toggleClass('btn-light').toggleClass('btn-danger')
+    }).catch(function(err) {
+      console.log(err)
+    })
+  })
+})
+</script>
 
 <%- contentFor('body') %>
 <div class="d-flex justify-content-center">
   <% if (posts.length > 0) { %>
-    <ul id="post-list" class="list-unstyled">
+    <ul id="post-list" class="list-unstyled justify-content-center">
       <% posts.forEach(function(post){ %>
         <div class="card m-5" style="width: 30rem;" data-id="<%= post.id %>">
-          <div class="card-header"><img class="post-avatar mr-2" src="<%=post.User.avatar%>"><%=post.User.username%></div>
-          <img class="card-img-top" src="<%= post.photo %>" alt="Card image cap">
-
-          <div class="card-body">
+          <div class="card-header"><img class="post-avatar mr-2" src="<%=post.User.avatar%>"><%=post.User.username%> <%= post.category%></div>
+          <div class="position-relative" style="padding-top: 100%; background-image: url(<%= post.photo %>); background-repeat: no-repeat; background-position: center; background-size: cover;" ></div>
+          <div class="card-body position-relative">
             <h5 class="card-title"><%= post.caption %></h5>
             <h6 class="card-subtitle mb-2 text-muted">By <%= post.User.username %> @ <%= moment(post.createdAt).format('YYYY/MM/DD') %></h6>
             <div class="card-text mb"><%= post.content %></div>
+            <% if (currentUser) { %> 
+              <button class="like-btn btn <%= postIDs.includes(post.id) ? 'btn-danger' : 'btn-light' %> position-absolute" style="bottom: 0; right: 0;">Like</button>
+            <% } %>
           </div>
         </div>
-        <% }) %>
+      <% }) %>
     </ul>
   <% } else { %>
     <div>No Posts</div>
   <% } %>
-  
 </div>

@@ -1,7 +1,7 @@
 const { body } = require('express-validator')
 const { checkValidation, MulterParser, authenticateCurrentUserByToken, canCreatePost } = require('../../_helpers')
 
-const permittedCreatePostParams = ['photo', 'caption', 'content']
+const permittedCreatePostParams = ['photo', 'caption', 'content', 'category']
 
 const validation = [
   body('caption')
@@ -9,7 +9,10 @@ const validation = [
     .isString().withMessage('Caption must be valid'),
   body('content')
     .notEmpty().withMessage('Content is Required')
-    .isString().withMessage('Content must be valid')
+    .isString().withMessage('Content must be valid'),
+  body('category')
+    .notEmpty().withMessage('Category is Required')
+    .isString().withMessage('Category must be valid')
 ]
 
 const apiCreatePost = async function(req, res) {
@@ -25,5 +28,5 @@ const apiCreatePost = async function(req, res) {
 
   res.status(200).json(post)
 }
-// canCreatePost,
+
 module.exports = [authenticateCurrentUserByToken('json'), MulterParser.single('photo'), validation, checkValidation, apiCreatePost]

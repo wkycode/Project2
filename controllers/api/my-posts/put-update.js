@@ -3,11 +3,12 @@ const { body } = require('express-validator')
 const { authenticateCurrentUserByToken, checkValidation, MulterParser } = require('../../_helpers')
 const { Post } = require('../../../models')
 
-const permittedChangeParams = ['caption', 'content']
+const permittedChangeParams = ['caption', 'content', 'category']
 
 const validation = [
   body('caption').isString().withMessage('Caption must be a String').notEmpty().withMessage('Caption is Required'),
-  body('content').isString().withMessage('Content must be a String').notEmpty().withMessage('Content is Required')
+  body('content').isString().withMessage('Content must be a String').notEmpty().withMessage('Content is Required'),
+  body('category').notEmpty().withMessage('Category is Required').isString().withMessage('Category must be valid')
 ]
 
 const apiMyPostsUpdate = async function(req, res) {

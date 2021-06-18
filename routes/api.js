@@ -5,6 +5,8 @@ router.post('/auth/signup', require('../controllers/api/auth/post-signup'))     
 router.post('/auth/login', require('../controllers/api/auth/post-login'))                     // LOGIN  GET     /api/auth/login
 router.delete('/auth/logout', require('../controllers/api/auth/delete-logout'))               // LOGOUT DELETE  /api/auth/logout
 
+router.post('/posts/:id/like', require('../controllers/api/posts/post-like'))
+
 router.post('/my/posts', require('../controllers/api/my-posts/create-post'))                  // Create Post    /api/my/posts
 router.put('/my/posts/:id', require('../controllers/api/my-posts/put-update'))                // Update Post    /api/my/posts/:id
 router.delete('/my/posts/:id', require('../controllers/api/my-posts/delete-destroy'))         // Delete Post    /api/my/posts/:id

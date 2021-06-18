@@ -201,9 +201,28 @@ ul ul a {
   border: 1px solid rgba(211,211,211,0.8);
 }
 
-.container1{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
-  padding: 10px;
+.user-submit {
+  border: 1px solid rgba(211,211,211,0.8);
+  border-radius: 5px;
+}
+
+.post-submit {
+  border: 1px solid rgba(211,211,211,0.8);
+  border-radius: 5px;
+}
+
+.signup-submit {
+  border: 1px solid rgba(211,211,211,0.8);
+  border-radius: 5px;
+}
+
+.login-submit {
+  border: 1px solid rgba(211,211,211,0.8);
+  border-radius: 5px;
+}
+
+
+.create-submit {
+  border: 1px solid rgba(211,211,211,0.8);
+  border-radius: 5px;
 }

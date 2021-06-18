@@ -13,6 +13,16 @@
             <label for="photoUpload">Photo</label>
             <input type="file" class="form-control-file" id="photoUpload" name="photo">
           </div> -->
+          <!-- Category -->
+          <div class="form-group">
+            <label class="col-form-label">Category</label>
+            <select class="custom-select" name="category">
+              <option value="">Select</option>
+              <option value="Work">Work</option>
+              <option value="Social">Social</option>
+              <option value="Relationship">Relationship</option>
+            </select>
+          </div>
           <!-- Caption -->
           <div class="form-group">
             <label for="createpost-caption" class="col-form-label">Caption</label>
@@ -32,13 +42,11 @@
             </div>
           </div>
           <!-- Uploaded image area-->
-          <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p>
           <div class="image-area mt-4"><img id="createResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
           <!-- Cancel Submit -->
           <div class="mt-4 mb-2 border-bottom row"></div>
           <div class="container text-right">
-            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="create-submit btn btn-light"><i class="fas fa-check"></i></button>
           </div>     
         </form>
       </div>

@@ -51,33 +51,33 @@ $(document).ready(function() {
 </div>
 
 <div class="container container2">
-
-    <div class="line"></div>
+    <div class="line mb-3"></div>
     <% if (posts.length > 0) { %>
-      <ul id="post-list" class="post-card list-unstyled d-flex justify-content-center">
+      <ul id="post-list" class="post-card row list-unstyled d-flex justify-content-center">
         <% posts.forEach(function(post){ %>
-          <div class="card m-5" style="width: 30rem;" data-id="<%= post.id %>">
-            <div class="card-header"><img class="post-avatar mr-2" src="<%=foundUser.avatar%>"><%=foundUser.username%></div>
-            <img class="card-img-top" src="<%= post.photo %>" alt="Card image cap">
-  
-            <div class="card-body">
-              <h5 class="card-title"><%= post.caption %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">By <%= foundUser.username %> @ <%= moment(post.createdAt).format('YYYY/MM/DD') %></h6>
-              <div class="card-text"><%= post.content %></div>
-            </div>
-  
-            <% if (currentUser && currentUser.id === post.UserId) { %> 
-              <div class="d-flex justify-content-end mr-2 mb-2">
-                <button type="button" class="edit-post-btn btn btn-light mr-1" data-id="<%= post.id %>" data-caption="<%= post.caption %>" data-content="<%= post.content %>">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button type="button" class="delete-btn del-post-btn btn btn-light"><i class="fas fa-trash"></i></button>
+          <div class="col-4 mb-3">
+            <div class="card h-100" data-id="<%= post.id %>">
+              <div class="card-header"><img class="post-avatar mr-2" src="<%=foundUser.avatar%>"><%=foundUser.username%></div>
+              <div class="position-relative" style="padding-top: 100%; background-image: url(<%= post.photo %>); background-repeat: no-repeat; background-position: center; background-size: cover;" ></div> 
+              <div class="card-body">
+                <h5 class="card-title"><%= post.caption %></h5>
+                <h6 class="card-subtitle mb-2 text-muted">By <%= foundUser.username %> @ <%= moment(post.createdAt).format('YYYY/MM/DD') %></h6>
+                <div class="card-text"><%= post.content %></div>
               </div>
-          <% } %> 
-        </div>
-      <% }) %>
-    </ul>
-  <% } else { %>
-    <div>No Posts</div>
-  <% } %>
+    
+              <% if (currentUser && currentUser.id === post.UserId) { %> 
+                <div class="d-flex justify-content-end mr-2 mb-2">
+                  <button type="button" class="edit-post-btn btn btn-light mr-1" data-id="<%= post.id %>" data-caption="<%= post.caption %>" data-content="<%= post.content %>">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="delete-btn del-post-btn btn btn-light"><i class="fas fa-trash"></i></button>
+                </div>
+              <% } %> 
+            </div>
+          </div>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <div>No Posts</div>
+    <% } %>
 </div>
