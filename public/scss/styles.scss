@@ -115,17 +115,6 @@ ul ul a {
   }
 }
 
-#upload {
-  opacity: 0;
-}
-
-#upload-label {
-  position: absolute;
-  top: 50%;
-  left: 1rem;
-  transform: translateY(-50%);
-}
-
 .image-area {
   border: 2px dashed rgba(255, 255, 255, 0.7);
   padding: 1rem;
@@ -160,6 +149,18 @@ ul ul a {
   left: 1rem;
   transform: translateY(-50%);
 }
+
+#signUpUpload {
+  opacity: 0;
+}
+
+#signUpUpload-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
 
 .navbar {
   border-bottom: 1px solid rgba(211,211,211,0.6);
