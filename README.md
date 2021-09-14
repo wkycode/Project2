@@ -1,13 +1,14 @@
-# Instructions
-- Clone and rename folder `$ git clone git@github.com:dented-academy/express-starter.git your_project_name_here`
-- Find and rename all instance of `your_project_name_here` to your project name
-- Create a `.env` file
-  ```txt
-  COOKIE_SECRET=put_something_random_here
-  ```
-- Run `$ npm install`
-- Run `$ npx sequelize-cli init:migrations && npx sequelize-cli init:seeders`
-- Run `$ npx sequelize-cli db:create`
-- Run `$ git remote remove origin`
-- Create a new repo and add the repo ssh link to remote
-- Run `$ git push origin master`
+# Instagram Clone
+---
+## Home Page
+---
+![Image1](https://i.imgur.com/6UzMyc3.png?1)
+---
+## SideBar
+![Image2](https://i.imgur.com/Z87P10C.png?1)
+---
+## Posting Photos
+![Image3](https://i.imgur.com/FCy73Lo.png?1)
+---
+## Profile Page
+![Image4](https://i.imgur.com/NRcVhjs.png?1)
