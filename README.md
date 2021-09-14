@@ -5,7 +5,7 @@
 ![Image1](https://i.imgur.com/6UzMyc3.png?1)
 ---
 ## SideBar
-### Customize SideBar based on bootstrap. Users can choose to filter photos by going to a specific category(filtering).
+### Customize SideBar based on bootstrap. Users can choose to filter posts by going to a specific category(filtering).
 ![Image2](https://i.imgur.com/Z87P10C.png?1)
 ---
 ## Posting Photos
